@@ -17,8 +17,9 @@ class DoomWidget:
             demo.game.close()
         self.games = {}
 
-    def send(self, api, chat_id):
-        return api("sendWidget", chat_id=chat_id, html=self.html, width=300, allow_queries=True)
+    def send(self, api, chat_id, reply_markup=None):
+        options = {"reply_markup": reply_markup} if reply_markup else {}
+        return api("sendWidget", chat_id=chat_id, html=self.html, width=300, allow_queries=True, **options)
 
     def expire(self):
         now = time.monotonic()
