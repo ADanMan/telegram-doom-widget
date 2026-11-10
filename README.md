@@ -8,6 +8,10 @@
 
 <img src="screenshots/hangar.png" width="320" alt="Старт E1M1 в Telegram"> <img src="screenshots/turn.png" width="320" alt="Тот же виджет после поворота вправо">
 
+<img src="screenshots/telegram-fire.png" width="300" alt="Выстрел из пистолета в сообщении Doom Message">
+
+В том же клиенте удалось пройти от стартового зала до двери и выстрелить из пистолета.
+
 ## Бой и выход из ангара
 
 <img src="screenshots/firefight.png" width="320" alt="Перестрелка с импом у токсичного бассейна"> <img src="screenshots/exit-switch.png" width="320" alt="Выключатель выхода в конце E1M1">
