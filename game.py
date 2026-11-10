@@ -34,11 +34,15 @@ class Hangar:
         self.game.set_render_hud(True)
         self.game.set_available_buttons(list(BUTTONS.values()))
         self.game.init()
+        self.restart()
+
+    def restart(self):
         self.game.new_episode()
+        self.game.advance_action(18)
 
     def frame(self, action):
         if action == "restart":
-            self.game.new_episode()
+            self.restart()
         elif action in BUTTONS and not self.game.is_episode_finished():
             self.game.make_action([int(key == action) for key in BUTTONS], 5)
         if self.game.is_episode_finished():
