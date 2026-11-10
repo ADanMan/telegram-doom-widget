@@ -1,0 +1,32 @@
+<style>
+body{margin:0;background:#211e1b;color:#ffdb9d;font:14px monospace}
+main{padding:8px}b{display:block;margin:0 0 5px}img{display:block;width:100%;height:auto;background:#171413}
+nav{display:flex;gap:4px;margin-top:4px}button{flex:1;padding:6px 2px;background:#443d35;color:white;border-radius:4px}
+#fire{background:#94442d}small{display:block;margin:5px}
+</style><main><b>DOOM · E1M1 / HANGAR</b>
+<img id="screen" alt="E1M1" src="data:image/webp;base64,FRAME">
+<nav><button id="left">↶</button><button id="forward">Вперёд</button><button id="right">↷</button></nav>
+<nav><button id="back">Назад</button><button id="use">Дверь</button><button id="fire">Огонь</button></nav>
+<nav><button id="restart">Заново</button></nav><small id="status">Нажми кнопку для хода</small></main>
+<script>
+const statusLine=document.querySelector('#status');
+let busy=false, next=0;
+async function move(action){
+  if(busy || Date.now()<next) return;
+  busy=true; next=Date.now()+1010; statusLine.textContent='Ход…';
+  try{
+    const reply=await TelegramWidget.request(action);
+    if(reply.result==='end') statusLine.textContent='Игра окончена · нажми «Заново»';
+    else if(reply.result==='busy') statusLine.textContent='Все слоты заняты. Попробуй позже.';
+    else if(!reply.result) statusLine.textContent='Ход не получен';
+    else {
+      document.querySelector('#screen').src='data:image/webp;base64,'+reply.result;
+      statusLine.textContent='E1M1 · следующий ход';
+    }
+  }catch(error){statusLine.textContent='Нет ответа · попробуй ещё раз'}
+  busy=false;
+}
+for(const key of ['left','forward','right','back','use','fire','restart']){
+  document.querySelector('#'+key).addEventListener('click',()=>move(key));
+}
+</script>

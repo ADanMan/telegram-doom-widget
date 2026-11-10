@@ -1,0 +1,6 @@
+.venv/
+__pycache__/
+*.wad
+*.ini
+_vizdoom/
+.DS_Store
