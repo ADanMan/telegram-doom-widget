@@ -6,7 +6,7 @@
 
 ## Игра в Telegram для macOS
 
-![Старт E1M1 в сообщении Telegram](screenshots/hangar.png)
+<img src="screenshots/hangar.png" width="320" alt="Старт E1M1 в Telegram"> <img src="screenshots/turn.png" width="320" alt="Тот же виджет после поворота вправо">
 
 ## Запуск
 
