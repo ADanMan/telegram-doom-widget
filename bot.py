@@ -39,7 +39,11 @@ def run():
             try:
                 msg = update.get("message", {})
                 if msg.get("chat", {}).get("type") == "private" and msg.get("text", "").split(" ")[0] in ("/start", "/ru", "/en"):
-                    sent = widget.send(api, msg["chat"]["id"], language_code="ru" if msg.get("text") in ("/ru", "/start ru") else "en")
+                    text = msg["text"].strip()
+                    language = msg.get("from", {}).get("language_code")
+                    if text in ("/ru", "/en", "/start ru", "/start en"):
+                        language = text[-2:]
+                    sent = widget.send(api, msg["chat"]["id"], language_code=language)
                     print("Widget sent", sent["message_id"], flush=True)
                 query = update.get("widget_query")
                 if query:
