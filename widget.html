@@ -5,25 +5,25 @@ nav{display:flex;gap:4px;margin-top:4px}button{flex:1;padding:6px 2px;background
 #fire{background:#94442d}small{display:block;margin:5px}
 </style><main><b>DOOM · E1M1 / HANGAR</b>
 <img id="screen" alt="E1M1" src="data:image/webp;base64,FRAME">
-<nav><button id="left">↶</button><button id="forward">Вперёд</button><button id="right">↷</button></nav>
-<nav><button id="back">Назад</button><button id="use">Дверь</button><button id="fire">Огонь</button></nav>
-<nav><button id="restart">Заново</button></nav><small id="status">Нажми кнопку для хода</small></main>
+<nav><button id="left">↶</button><button id="forward">${forward_label}</button><button id="right">↷</button></nav>
+<nav><button id="back">${back_label}</button><button id="use">${use_label}</button><button id="fire">${fire_label}</button></nav>
+<nav><button id="restart">${restart_label}</button></nav><small id="status">${idle_status}</small></main>
 <script>
 const statusLine=document.querySelector('#status');
 let busy=false, next=0;
 async function move(action){
   if(busy || Date.now()<next) return;
-  busy=true; next=Date.now()+1010; statusLine.textContent='Ход…';
+  busy=true; next=Date.now()+1010; statusLine.textContent='${move_status}';
   try{
     const reply=await TelegramWidget.request(action);
-    if(reply.result==='end') statusLine.textContent='Игра окончена · нажми «Заново»';
-    else if(reply.result==='busy') statusLine.textContent='Все слоты заняты. Попробуй позже.';
-    else if(!reply.result) statusLine.textContent='Ход не получен';
+    if(reply.result==='end') statusLine.textContent='${end_status}';
+    else if(reply.result==='busy') statusLine.textContent='${busy_status}';
+    else if(!reply.result) statusLine.textContent='${empty_status}';
     else {
       document.querySelector('#screen').src='data:image/webp;base64,'+reply.result;
-      statusLine.textContent='E1M1 · следующий ход';
+      statusLine.textContent='${next_status}';
     }
-  }catch(error){statusLine.textContent='Нет ответа · попробуй ещё раз'}
+  }catch(error){statusLine.textContent='${error_status}'}
   busy=false;
 }
 for(const key of ['left','forward','right','back','use','fire','restart']){

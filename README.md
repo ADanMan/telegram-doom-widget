@@ -1,39 +1,45 @@
 # Doom Message
 
-[Играть в Telegram](https://t.me/ADanManDoomMessageBot?start=hangar)
+**English** · [Русский](README.ru.md)
 
-Оригинальная shareware-версия Doom 1.9, уровень E1M1 (Hangar), с управлением прямо в сообщении Telegram. Игровую логику и графику обрабатывает ViZDoom на компьютере с ботом. Виджет показывает кадр и принимает нажатия. Каждый ход продвигает игру на пять игровых тиков. Между ходами мир стоит на паузе.
+[Play Doom in Telegram](https://t.me/ADanManDoomMessageBot?start=hangar) · [Browse more Telegram widgets](https://github.com/ADanMan/awesome-telegram-widgets)
 
-## Игра в Telegram для macOS
+Play Hangar (E1M1) from the original Doom 1.9 shareware release inside a Telegram message. ViZDoom runs on the bot's host. Tap a button to move the game forward five ticks and see the next frame in the same message. The game pauses between turns.
 
-<img src="screenshots/hangar.png" width="320" alt="Старт E1M1 в Telegram"> <img src="screenshots/turn.png" width="320" alt="Тот же виджет после поворота вправо">
+## Playing in Telegram
 
-<img src="screenshots/telegram-fire.png" width="300" alt="Выстрел из пистолета в сообщении Doom Message">
+Open the bot in a private chat and tap **Start**. Use the arrows to turn, **Forward** and **Back** to walk, **Use** to open doors or activate switches, and **Fire** to shoot. **Restart** takes you back to the start of Hangar. Controls default to English and switch to Russian for users with a Russian Telegram language setting.
 
-В том же клиенте удалось пройти от стартового зала до двери и выстрелить из пистолета.
+<img src="screenshots/hangar.png" width="320" alt="The starting room in Hangar inside Telegram"> <img src="screenshots/turn.png" width="320" alt="The same message after turning right">
 
-## Бой и выход из ангара
+<img src="screenshots/telegram-fire.png" width="300" alt="Firing the pistol inside a Telegram message">
 
-<img src="screenshots/firefight.png" width="320" alt="Перестрелка с импом у токсичного бассейна"> <img src="screenshots/exit-switch.png" width="320" alt="Выключатель выхода в конце E1M1">
+These screenshots show the Russian interface in Telegram for macOS. We walked from the starting room to the door and fired the pistol in that client.
 
-Кадры выше сняты в локальном ViZDoom до сжатия для Telegram. В контрольном прохождении E1M1 игрок дошёл до выключателя, уничтожил шесть противников и завершил уровень с 48% здоровья. Прохождение заняло 537 ходов по пять тиков с теми же действиями, что доступны в виджете.
+## A full run through Hangar
 
-## Запуск
+<img src="screenshots/firefight.png" width="320" alt="Fighting an imp beside the toxic pool"> <img src="screenshots/exit-switch.png" width="320" alt="The exit switch at the end of Hangar">
 
-Понадобятся Python 3.12, токен отдельного Telegram-бота и оригинальный файл DOOM1.WAD из Doom Shareware 1.9. MD5 файла — `f0cefca49926d00903cf57551d901abe`. Игровые ресурсы принадлежат id Software и в репозиторий не входят.
+These two frames come from a local ViZDoom run, before Telegram frame compression. Using the same actions as the widget, the player reached the exit switch in 537 turns, killed six enemies and finished with 48% health.
+
+## Run your own bot
+
+You need Python 3.12, a Telegram bot token and the original Doom Shareware 1.9 `DOOM1.WAD` (MD5 `f0cefca49926d00903cf57551d901abe`). The game assets belong to id Software. Supply your own copy.
 
 ```sh
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.txt
 export DOOM_WAD=/path/to/DOOM1.WAD
-# Передайте BOT_TOKEN через окружение или сохраните токен в ~/.config/doom-message/token с правами 0600.
+# Set BOT_TOKEN in the environment or store it in ~/.config/doom-message/token with mode 0600.
 .venv/bin/python bot.py
 ```
 
-Отправьте боту `/start` в личке. Поворот, шаг, огонь и открытие двери выполняются кнопками под кадром. «Заново» перезапускает E1M1. Звука и сохранений нет. Бот держит до шести игровых сессий и освобождает их после десяти минут бездействия.
+Send `/start` in a private chat with your bot. The host supports up to six game sessions and releases idle sessions after ten minutes. The widget has no sound or saved games.
 
-## Как передаётся кадр
+## How a frame fits in a message
 
-Виджет передаёт название действия через `TelegramWidget.request`. Бот исполняет действие и возвращает WebP в Base64 через `answerWidgetQuery`. Разрешение меняется с детализацией сцены, чтобы уложиться в 1024 байта ответа. Интервал между запросами — чуть больше секунды. Для игры нужны работающий бот, доступ к Telegram и клиент с поддержкой виджетов.
+The widget sends the action name through `TelegramWidget.request`. The bot advances the game and returns a Base64-encoded WebP frame through `answerWidgetQuery`. The encoder adjusts the resolution to fit the 1,024-byte response limit. The widget waits just over one second between requests.
 
-На 10 ноября 2026 года Telegram разрешает виджеты в продакшене только в личном чате с ботом. В публичном канале можно поделиться ссылкой на бота. [Telegram Widgets](https://core.telegram.org/bots/widgets) · [ViZDoom](https://github.com/Farama-Foundation/ViZDoom)
+Play requires a running bot and a Telegram client with widget support. As of November 10, 2026, production widgets run in private bot chats. You can share the bot link in a public channel.
+
+[Telegram Widgets](https://core.telegram.org/bots/widgets) · [ViZDoom](https://github.com/Farama-Foundation/ViZDoom)
