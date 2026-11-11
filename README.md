@@ -8,13 +8,13 @@ Play Hangar (E1M1) from the original Doom 1.9 shareware release inside a Telegra
 
 ## Playing in Telegram
 
-Open the bot in a private chat and tap **Start**. Use the arrows to turn, **Forward** and **Back** to walk, **Use** to open doors or activate switches, and **Fire** to shoot. **Restart** takes you back to the start of Hangar. Controls default to English and switch to Russian for users with a Russian Telegram language setting.
+Open the bot in a private chat and tap **Start**. Use the arrows to turn, **Forward** and **Back** to walk, **Use** to open doors or activate switches, and **Fire** to shoot. **Restart** takes you back to the start of Hangar. Controls default to English. Send `/ru` to play in Russian.
 
-<img src="screenshots/hangar.png" width="320" alt="The starting room in Hangar inside Telegram"> <img src="screenshots/turn.png" width="320" alt="The same message after turning right">
+<img src="screenshots/hangar-en.png" width="320" alt="The starting room in Hangar inside Telegram"> <img src="screenshots/turn-en.png" width="320" alt="The same message after turning right">
 
-<img src="screenshots/telegram-fire.png" width="300" alt="Firing the pistol inside a Telegram message">
+<img src="screenshots/telegram-fire-en.png" width="300" alt="Firing the pistol inside a Telegram message">
 
-These screenshots show the Russian interface in Telegram for macOS. We walked from the starting room to the door and fired the pistol in that client.
+[Watch 13 seconds of gameplay in Telegram for macOS (MP4)](screenshots/doom-telegram-en.mp4). The clip shows a turn, a step forward and pistol fire in the same message.
 
 ## A full run through Hangar
 

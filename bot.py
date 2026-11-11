@@ -38,8 +38,8 @@ def run():
             offset = update["update_id"] + 1
             try:
                 msg = update.get("message", {})
-                if msg.get("chat", {}).get("type") == "private" and msg.get("text", "").split(" ")[0] == "/start":
-                    sent = widget.send(api, msg["chat"]["id"], language_code=msg.get("from", {}).get("language_code"))
+                if msg.get("chat", {}).get("type") == "private" and msg.get("text", "").split(" ")[0] in ("/start", "/ru", "/en"):
+                    sent = widget.send(api, msg["chat"]["id"], language_code="ru" if msg.get("text") in ("/ru", "/start ru") else "en")
                     print("Widget sent", sent["message_id"], flush=True)
                 query = update.get("widget_query")
                 if query:
